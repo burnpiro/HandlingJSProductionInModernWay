@@ -8,10 +8,10 @@
 
   <link rel="stylesheet" href="css/reveal.css">
   <link rel="stylesheet" href="css/theme/beige.css">
-  <link rel="stylesheet" href="assets/custom.css">
 
   <!-- Theme used for syntax highlighting of code -->
   <link rel="stylesheet" href="lib/css/zenburn.css">
+  <link rel="stylesheet" href="assets/custom.css">
 
   <!-- Printing and PDF exports -->
   <script>
@@ -26,30 +26,117 @@
 <div class="reveal">
   <div class="slides">
     <section>
-      <h2>Handling JS Production <br/>
-        modern way</h2>
+      <h2>Get Your <s>Sh*t</s> Staff together</h2>
       <small>Kemal Erdem | <a href="https://github.com/burnpiro">github.com/burnpiro</a></small>
       <aside class="notes"></aside>
     </section>
 
-    <!--<section>-->
-      <!--<section>-->
-        <!--<p><strong>JS is a strange language</strong></p>-->
-        <!--<p>Many implementations</p>-->
-        <!--<p>Multiple platforms</p>-->
-        <!--<aside class="notes">-->
+    <section data-background="assets/wrong_cables.jpg">
+    </section>
 
-        <!--</aside>-->
-      <!--</section>-->
-    <!--</section>-->
+    <section>
+      <section>
+        <p><strong>Babel - the transpiler</strong></p>
+        <a href="https://github.com/babel/awesome-babel">https://github.com/babel/awesome-babel</a>
+        <aside class="notes">
 
-    <!--<section>-->
-      <!--<h2>Compiled or Interpreted?</h2>-->
-      <!--<p class="fragment">JIT (Just In Time) Compiler</p>-->
-      <!--<aside class="notes">-->
+        </aside>
+      </section>
+    </section>
 
-      <!--</aside>-->
-    <!--</section>-->
+    <section>
+      <section>
+        <h2>Plugins</h2>
+        <div class="fragment">
+          <p>babel-plugin-feature-flags</p>
+          <p>babel-plugin-transform-builtin-extend</p>
+        </div>
+        <aside class="notes">
+          enable-feature by using flag <br/>
+          allows to extend buildin types like Array
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <p><strong>How to use?</strong></p>
+        <p>.babelrc</p>
+        <pre style="width: 100%; margin: 0">
+        <code class="javascript" data-trim>
+          {
+            "plugins": [
+              "babel-plugin-feature-flags",
+              "babel-plugin-transform-builtin-extend"
+            ]
+          }
+        </code>
+        </pre>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h2>Presets - set of plugins</h2>
+        <p>babel-preset-env</p>
+        <p>babel-preset-minify</p>
+        <p>babel-preset-react-optimize</p>
+        <p>babel-preset-flow</p>
+        <p>babel-preset-typescript</p>
+        <p>babel-preset-c-3po</p>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <p><strong>How to use?</strong></p>
+        <p>.babelrc</p>
+        <pre style="width: 100%; margin: 0">
+        <code class="javascript" data-trim>
+          {
+            "presets": [
+              "es2015",
+              "react",
+              "stage-2",
+              ["env", {
+                "targets": {
+                  "browsers": ["last 2 versions", "safari >= 7"]
+                }
+              }]
+            ]
+          }
+        </code>
+        </pre>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <p><strong>Bundler (webpack, rollup)</strong></p>
+        <p>Apps -> Webpack</p>
+        <p>Libs -> Rollup</p>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <h2>Compiled or Interpreted?</h2>
+      <p class="fragment">JIT (Just In Time) Compiler</p>
+      <aside class="notes">
+
+      </aside>
+    </section>
 
     <!--<section>-->
       <!--<h3>Main flow in JS Engine</h3>-->

@@ -7,6 +7,7 @@ body:after {
   width: 15vh;
   height: 8.8vh;
   content:"";
+  font-size: 80% !important;
 }
 
 img {
@@ -22,4 +23,9 @@ img {
 .reveal pre {
   margin: 0 auto;
   box-shadow: none;
+}
+
+a {
+  font-size: 80% !important;
+  line-height: 120% !important;
 }
