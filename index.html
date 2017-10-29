@@ -63,8 +63,8 @@
       <section>
         <p><strong>How to use?</strong></p>
         <p>.babelrc</p>
-        <pre style="width: 100%; margin: 0">
-        <code class="javascript" data-trim>
+        <pre style="width: 95%; margin: 0" class="stretch">
+        <code class="language-javascript" data-trim>
           {
             "plugins": [
               "babel-plugin-feature-flags",
@@ -81,13 +81,52 @@
 
     <section>
       <section>
-        <h2>Presets - set of plugins</h2>
-        <p>babel-preset-env</p>
-        <p>babel-preset-minify</p>
-        <p>babel-preset-react-optimize</p>
-        <p>babel-preset-flow</p>
-        <p>babel-preset-typescript</p>
-        <p>babel-preset-c-3po</p>
+        <h2>Preset - set of plugins</h2>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h2>babel-preset-env</h2>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h2>babel-preset-minify</h2>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h2>babel-preset-react-optimize</h2>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h2>babel-preset-flow</h2>
+        <aside class="notes">
+
+        </aside>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h2>babel-preset-c-3po</h2>
         <aside class="notes">
 
         </aside>
@@ -98,12 +137,11 @@
       <section>
         <p><strong>How to use?</strong></p>
         <p>.babelrc</p>
-        <pre style="width: 100%; margin: 0">
-        <code class="javascript" data-trim>
+        <pre style="width: 95%; margin: 0" class="stretch">
+        <code class="language-javascript" data-trim>
           {
             "presets": [
               "react",
-              "stage-2",
               ["env", {
                 "targets": {
                   "browsers": ["last 2 versions", "safari >= 10"]
@@ -176,7 +214,7 @@
         <code class="language-javascript" data-trim>
           module.exports = {
             entry: {
-              <mark>main: pathToMainJSFile</mark>
+              main: pathToMainJSFile
             },
             output: {
               filename: 'bundle.js',
@@ -190,7 +228,10 @@
                   loader: 'babel-loader'
                 }
               ]
-            ]
+            ],
+            resolve: {
+              extensions: ['.js', '.jsx']
+            }
           }
         </code>
         </pre>
@@ -200,15 +241,15 @@
     </section>
 
     <section>
-      <pre style="width: 100%; margin: 0">
-        <code class="markdown" data-trim>
+        <pre style="width: 95%; margin: 0" class="stretch">
+        <code class="language-javascript" data-trim>
           {
             entry: {
               main: pathToMainJSFile,
-              vendors: pathToVendorsIndex
+              <mark>vendors: pathToVendorsIndex</mark>
             },
             output: {
-              filename: '[name].bundle.js',
+              filename: '<mark>[name]</mark>.bundle.js',
               path: pathToDistDir
             },
             module: {
@@ -220,11 +261,12 @@
                 }
               ]
             ],
-            plugins: [
-              new webpack.optimize.CommonsChunkPlugin({
-                name: 'common'
-              })
-            ]
+            <mark>plugins: [</mark>
+              <mark>new webpack.optimize.CommonsChunkPlugin({</mark>
+                <mark>name: 'common'</mark>
+              <mark>})</mark>
+            <mark>]</mark>,
+            resolve: {...}
           }
         </code>
         </pre>
@@ -234,18 +276,11 @@
     </section>
 
     <section>
-      <p><strong>Let's get started!</strong></p>
-      <pre style="width: 100%; margin: 0">
-        <code class="javascript" data-trim>
+      <pre style="width: 95%; margin: 0" class="stretch">
+        <code class="language-javascript" data-trim>
           {
-            entry: {
-              main: pathToMainJSFile,
-              vendors: pathToVendorsIndex
-            },
-            output: {
-              filename: '[name].bundle.js',
-              path: pathToDistDir
-            },
+            entry: {...},
+            output: {...},
             module: {
               loaders: [
                 {
@@ -254,17 +289,17 @@
                   loader: 'babel-loader'
                 },
                 {
-                  test: /\.css$/,
-                  use: [
-                    'style-loader',
-                    'css-loader'
-                  ]
+                  <mark>test: /\.css$/,</mark>
+                  <mark>use: [</mark>
+                    <mark>'style-loader',</mark>
+                    <mark>'css-loader'</mark>
+                  <mark>]</mark>
                 },
                 {
-                  test: /\.(png|svg|jpg|gif)$/,
-                  use: [
-                    'file-loader'
-                  ]
+                  <mark>test: /\.(png|svg|jpg|gif)$/,</mark>
+                  <mark>use: [</mark>
+                    <mark>'file-loader'</mark>
+                  <mark>]</mark>
                 }
               ]
             ],
@@ -272,8 +307,9 @@
               new webpack.optimize.CommonsChunkPlugin({
                 name: 'common'
               }),
-              new ExtractTextPlugin('styles.css')
-            ]
+              <mark>new ExtractTextPlugin('styles.css')</mark>
+            ],
+            resolve: {...}
           }
         </code>
         </pre>
@@ -283,39 +319,13 @@
     </section>
 
     <section>
-      <p><strong>Let's get started!</strong></p>
-      <pre style="width: 100%; margin: 0">
-        <code class="javascript" data-trim>
+      <pre style="width: 95%; margin: 0" class="stretch">
+        <code class="language-javascript" data-trim>
           {
-            entry: {
-              main: pathToMainJSFile,
-              vendors: pathToVendorsIndex
-            },
-            output: {
-              filename: '[name].bundle.js',
-              path: pathToDistDir
-            },
+            entry: {...},
+            output: {...},
             module: {
-              loaders: [
-                {
-                  test: /\.(js|jsx)$/,
-                  include: paths.appSrc,
-                  loader: 'babel-loader'
-                },
-                {
-                  test: /\.css$/,
-                  use: [
-                    'style-loader',
-                    'css-loader'
-                  ]
-                },
-                {
-                  test: /\.(png|svg|jpg|gif)$/,
-                  use: [
-                    'file-loader'
-                  ]
-                }
-              ]
+              loaders: [...]
             ],
             plugins: [
               new CleanWebpackPlugin(['dist']),
@@ -323,10 +333,11 @@
                 name: 'common'
               }),
               new ExtractTextPlugin('styles.css'),
-              new webpack.DefinePlugin({}),
-              new UglifyJSPlugin(),
-              new HTMLWebpackPlugin({title: 'Our App :)'})
-            ]
+              <mark>new webpack.DefinePlugin({}),</mark>
+              <mark>new UglifyJSPlugin(),</mark>
+              <mark>new HTMLWebpackPlugin({title: 'Our App :)'})</mark>
+            ],
+            resolve: {...}
           }
         </code>
         </pre>
@@ -336,9 +347,8 @@
     </section>
 
     <section>
-      <p><strong>Let's get started!</strong></p>
-      <div style="width: 100%; margin: 0">
-        <code class="javascript" data-trim>
+      <pre style="width: 95%; margin: 0" class="stretch">
+        <code class="language-javascript" data-trim>
           {
             entry: {
               main: pathToMainJSFile,
@@ -379,14 +389,93 @@
               new webpack.DefinePlugin({}),
               new UglifyJSPlugin(),
               new HTMLWebpackPlugin({title: 'Our App :)'}),
+              <mark>new Visualizer(),</mark>
+              <mark>new ManifestPlugin({</mark>
+                <mark>fileName: 'asset-manifest.json'</mark>
+              <mark>})</mark>
+            ],
+            resolve: {
+              extensions: ['.js', '.jsx']
+            }
+          }
+        </code>
+        </pre>
+      <aside class="notes">
+
+      </aside>
+    </section>
+
+    <section>
+      <pre style="width: 95%; margin: 0" class="stretch">
+        <code class="language-javascript" data-trim>
+          {
+            entry: {
+              main: pathToMainJSFile,
+              vendors: pathToVendorsIndex
+            },
+            output: {
+              filename: '[name].bundle.js',
+              path: pathToDistDir
+            },
+            module: {
+              loaders: [
+                {
+                  test: /\.(js|jsx)$/,
+                  include: paths.appSrc,
+                  use: {
+                    <mark>loader: 'babel-loader',</mark>
+                    <mark>options: {</mark>
+                      <mark>presets: ['env', {</mark>
+                        <mark>modules: false,</mark>
+                        <mark>useBuiltIns: true,</mark>
+                        <mark>targets: {</mark>
+                          <mark>browsers: [</mark>
+                            <mark>'Chrome >= 60',</mark>
+                            <mark>'Safari >= 10.1',</mark>
+                            <mark>'iOS >= 10.3',</mark>
+                            <mark>'Firefox >= 54',</mark>
+                            <mark>'Edge >= 15',</mark>
+                          <mark>],</mark>
+                        <mark>},</mark>
+                      <mark>}],</mark>
+                    <mark>}</mark>
+                  }
+                }
+                {
+                  test: /\.css$/,
+                  use: [
+                    'style-loader',
+                    'css-loader'
+                  ]
+                },
+                {
+                  test: /\.(png|svg|jpg|gif)$/,
+                  use: [
+                    'file-loader'
+                  ]
+                }
+              ]
+            ],
+            plugins: [
+              new CleanWebpackPlugin(['dist']),
+              new webpack.optimize.CommonsChunkPlugin({
+                name: 'common'
+              }),
+              new ExtractTextPlugin('styles.css'),
+              new webpack.DefinePlugin({}),
+              new UglifyJSPlugin(),
+              new HTMLWebpackPlugin({title: 'Our App :)'}),
               new Visualizer(),
               new ManifestPlugin({
                 fileName: 'asset-manifest.json'
               })
-            ]
+            ],
+            resolve: {
+              extensions: ['.js', '.jsx']
+            }
           }
         </code>
-        </div>
+        </pre>
       <aside class="notes">
 
       </aside>
