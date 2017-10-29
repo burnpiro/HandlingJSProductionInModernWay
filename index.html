@@ -12,6 +12,7 @@
   <!-- Theme used for syntax highlighting of code -->
   <link rel="stylesheet" href="lib/css/zenburn.css">
   <link rel="stylesheet" href="assets/custom.css">
+  <link rel="stylesheet" href="plugin/prism/prism.css">
 
   <!-- Printing and PDF exports -->
   <script>
@@ -39,7 +40,7 @@
         <p><strong>Babel - the transpiler</strong></p>
         <a href="https://github.com/babel/awesome-babel">https://github.com/babel/awesome-babel</a>
         <aside class="notes">
-
+          source to source compiler
         </aside>
       </section>
     </section>
@@ -101,12 +102,11 @@
         <code class="javascript" data-trim>
           {
             "presets": [
-              "es2015",
               "react",
               "stage-2",
               ["env", {
                 "targets": {
-                  "browsers": ["last 2 versions", "safari >= 7"]
+                  "browsers": ["last 2 versions", "safari >= 10"]
                 }
               }]
             ]
@@ -119,20 +119,274 @@
       </section>
     </section>
 
-    <section>
-      <section>
-        <p><strong>Bundler (webpack, rollup)</strong></p>
-        <p>Apps -> Webpack</p>
-        <p>Libs -> Rollup</p>
-        <aside class="notes">
-
-        </aside>
-      </section>
+    <section data-background="assets/rollupAndWebpack.png">
+      <h2 style="color: #fff; text-shadow:
+       -4px -4px 0 #000,
+      4px -4px 0 #000,
+       -4px 4px 0 #000,
+      4px 4px 0 #000; margin-top: 40vh">
+        Rollup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Webpack
+      </h2>
     </section>
 
     <section>
-      <h2>Compiled or Interpreted?</h2>
-      <p class="fragment">JIT (Just In Time) Compiler</p>
+      <h2>Webpack</h2>
+      <p class="fragment">Code splitting!!!</p>
+      <p class="fragment">Lots of loaders</p>
+      <p class="fragment">Great community</p>
+      <aside class="notes">
+
+      </aside>
+    </section>
+
+    <section>
+      <h2>Rollup</h2>
+      <p class="fragment">Flat outputs</p>
+      <p class="fragment">Leaner, simpler, faster code</p>
+      <p class="fragment">React, Vue, Ember, Preact, D3, Three.js, Moment...</p>
+      <aside class="notes">
+
+      </aside>
+    </section>
+
+    <section data-background="assets/chooseWebpackOrRollup.jpg">
+      <h2 style="color: #fff; text-shadow:
+       -4px -4px 0 #000,
+      4px -4px 0 #000,
+       -4px 4px 0 #000,
+      4px 4px 0 #000; margin-top: 40vh">
+        Which one to choose?
+      </h2>
+    </section>
+
+    <section data-background="assets/apple-and-orange.png">
+    </section>
+
+    <section>
+      <p>Apps => Webpack</p>
+      <p>Libs => Rollup</p>
+      <aside class="notes">
+
+      </aside>
+    </section>
+
+    <section class="codeBlock">
+      <p><strong>Let's get started!</strong></p>
+      <pre style="width: 95%; margin: 0" class="stretch">
+        <code class="language-javascript" data-trim>
+          module.exports = {
+            entry: {
+              <mark>main: pathToMainJSFile</mark>
+            },
+            output: {
+              filename: 'bundle.js',
+              path: pathToDistDir
+            },
+            module: {
+              loaders: [
+                {
+                  test: /\.(js|jsx)$/,
+                  include: paths.appSrc,
+                  loader: 'babel-loader'
+                }
+              ]
+            ]
+          }
+        </code>
+        </pre>
+      <aside class="notes">
+
+      </aside>
+    </section>
+
+    <section>
+      <pre style="width: 100%; margin: 0">
+        <code class="markdown" data-trim>
+          {
+            entry: {
+              main: pathToMainJSFile,
+              vendors: pathToVendorsIndex
+            },
+            output: {
+              filename: '[name].bundle.js',
+              path: pathToDistDir
+            },
+            module: {
+              loaders: [
+                {
+                  test: /\.(js|jsx)$/,
+                  include: paths.appSrc,
+                  loader: 'babel-loader'
+                }
+              ]
+            ],
+            plugins: [
+              new webpack.optimize.CommonsChunkPlugin({
+                name: 'common'
+              })
+            ]
+          }
+        </code>
+        </pre>
+      <aside class="notes">
+
+      </aside>
+    </section>
+
+    <section>
+      <p><strong>Let's get started!</strong></p>
+      <pre style="width: 100%; margin: 0">
+        <code class="javascript" data-trim>
+          {
+            entry: {
+              main: pathToMainJSFile,
+              vendors: pathToVendorsIndex
+            },
+            output: {
+              filename: '[name].bundle.js',
+              path: pathToDistDir
+            },
+            module: {
+              loaders: [
+                {
+                  test: /\.(js|jsx)$/,
+                  include: paths.appSrc,
+                  loader: 'babel-loader'
+                },
+                {
+                  test: /\.css$/,
+                  use: [
+                    'style-loader',
+                    'css-loader'
+                  ]
+                },
+                {
+                  test: /\.(png|svg|jpg|gif)$/,
+                  use: [
+                    'file-loader'
+                  ]
+                }
+              ]
+            ],
+            plugins: [
+              new webpack.optimize.CommonsChunkPlugin({
+                name: 'common'
+              }),
+              new ExtractTextPlugin('styles.css')
+            ]
+          }
+        </code>
+        </pre>
+      <aside class="notes">
+
+      </aside>
+    </section>
+
+    <section>
+      <p><strong>Let's get started!</strong></p>
+      <pre style="width: 100%; margin: 0">
+        <code class="javascript" data-trim>
+          {
+            entry: {
+              main: pathToMainJSFile,
+              vendors: pathToVendorsIndex
+            },
+            output: {
+              filename: '[name].bundle.js',
+              path: pathToDistDir
+            },
+            module: {
+              loaders: [
+                {
+                  test: /\.(js|jsx)$/,
+                  include: paths.appSrc,
+                  loader: 'babel-loader'
+                },
+                {
+                  test: /\.css$/,
+                  use: [
+                    'style-loader',
+                    'css-loader'
+                  ]
+                },
+                {
+                  test: /\.(png|svg|jpg|gif)$/,
+                  use: [
+                    'file-loader'
+                  ]
+                }
+              ]
+            ],
+            plugins: [
+              new CleanWebpackPlugin(['dist']),
+              new webpack.optimize.CommonsChunkPlugin({
+                name: 'common'
+              }),
+              new ExtractTextPlugin('styles.css'),
+              new webpack.DefinePlugin({}),
+              new UglifyJSPlugin(),
+              new HTMLWebpackPlugin({title: 'Our App :)'})
+            ]
+          }
+        </code>
+        </pre>
+      <aside class="notes">
+
+      </aside>
+    </section>
+
+    <section>
+      <p><strong>Let's get started!</strong></p>
+      <div style="width: 100%; margin: 0">
+        <code class="javascript" data-trim>
+          {
+            entry: {
+              main: pathToMainJSFile,
+              vendors: pathToVendorsIndex
+            },
+            output: {
+              filename: '[name].bundle.js',
+              path: pathToDistDir
+            },
+            module: {
+              loaders: [
+                {
+                  test: /\.(js|jsx)$/,
+                  include: paths.appSrc,
+                  loader: 'babel-loader'
+                },
+                {
+                  test: /\.css$/,
+                  use: [
+                    'style-loader',
+                    'css-loader'
+                  ]
+                },
+                {
+                  test: /\.(png|svg|jpg|gif)$/,
+                  use: [
+                    'file-loader'
+                  ]
+                }
+              ]
+            ],
+            plugins: [
+              new CleanWebpackPlugin(['dist']),
+              new webpack.optimize.CommonsChunkPlugin({
+                name: 'common'
+              }),
+              new ExtractTextPlugin('styles.css'),
+              new webpack.DefinePlugin({}),
+              new UglifyJSPlugin(),
+              new HTMLWebpackPlugin({title: 'Our App :)'}),
+              new Visualizer(),
+              new ManifestPlugin({
+                fileName: 'asset-manifest.json'
+              })
+            ]
+          }
+        </code>
+        </div>
       <aside class="notes">
 
       </aside>
@@ -880,11 +1134,7 @@
       {src: 'plugin/markdown/marked.js'},
       {src: 'plugin/markdown/markdown.js'},
       {src: 'plugin/notes/notes.js', async: true},
-      {
-        src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-        hljs.initHighlightingOnLoad();
-      }
-      }
+      {src: 'plugin/prism/prism.js', async: true}
     ]
   });
 </script>

@@ -29,3 +29,9 @@ a {
   font-size: 80% !important;
   line-height: 120% !important;
 }
+
+.codeBlock {
+}
+
+.codeBlock pre code {
+}
