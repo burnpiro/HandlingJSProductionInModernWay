@@ -254,11 +254,7 @@
             },
             module: {
               loaders: [
-                {
-                  test: /\.(js|jsx)$/,
-                  include: paths.appSrc,
-                  loader: 'babel-loader'
-                }
+                {...}
               ]
             ],
             <mark>plugins: [</mark>
@@ -283,11 +279,7 @@
             output: {...},
             module: {
               loaders: [
-                {
-                  test: /\.(js|jsx)$/,
-                  include: paths.appSrc,
-                  loader: 'babel-loader'
-                },
+                {...},
                 {
                   <mark>test: /\.css$/,</mark>
                   <mark>use: [</mark>
