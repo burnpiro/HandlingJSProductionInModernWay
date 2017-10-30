@@ -225,7 +225,7 @@
                 {
                   test: /\.(js|jsx)$/,
                   include: paths.appSrc,
-                  loader: 'babel-loader'
+                  use: ['babel-loader']
                 }
               ]
             ],
@@ -355,7 +355,7 @@
                 {
                   test: /\.(js|jsx)$/,
                   include: paths.appSrc,
-                  loader: 'babel-loader'
+                  use: ['babel-loader']
                 },
                 {
                   test: /\.css$/,
@@ -414,7 +414,7 @@
                 {
                   test: /\.(js|jsx)$/,
                   include: paths.appSrc,
-                  use: {
+                  use: [{
                     <mark>loader: 'babel-loader',</mark>
                     <mark>options: {</mark>
                       <mark>presets: ['env', {</mark>
@@ -431,7 +431,7 @@
                         <mark>},</mark>
                       <mark>}],</mark>
                     <mark>}</mark>
-                  }
+                  }]
                 }
                 {
                   test: /\.css$/,
